@@ -1,0 +1,91 @@
+<%- include('../partials/header') %>
+
+
+<div class="product">
+<div class="productimg"><img src="<%= product.pics[0] %>"></div>
+<div class ="productdetails">
+<section id="show-page">
+  <div>Name: </div>
+  <div><%= product.name %></div>
+  <div>Price: </div>
+  <div><%= product.price %></div>
+  <div>Gender: </div>
+  <div><%= product.gender %></div>
+  <div>On sale: </div>
+  <div><%= product.onSale ? 'Yes' : 'Nope' %></div>
+  <!-- start images list -->
+  <div>images:</div>
+  <ul>
+    <%- product.images.map(p => 
+      `<li>${p.name} <small>${p.born.toLocaleDateString()}</small></li>`
+    ).join('') %>
+  </ul>
+  <!-- end Images list -->
+</section>
+<form id="add-review-form" method="POST" action="/products/user/id=<%= user._id %>&pro=<%= product._id %>">
+  <!-- <label>Review:</label>
+            <textarea name="content"></textarea> -->
+
+  <input type="submit" value="Add To Cart">
+</form>
+</div>
+</div>
+<br><br>
+<h2>Reviews</h2>
+<% if (user) { %>
+  <form id="add-review-form" method="POST" action="/products/<%= product._id %>/reviews">
+    <label>Review:</label>
+    <textarea name="content"></textarea>
+    <label>Rating:</label>
+    <select name="rating">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <input type="submit" value="Add Review">
+  </form>
+<% } %>
+
+<% if (product.reviews.length) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Date</th>
+        <th>Review</th>
+        <th>Rating</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% let total = 0 %>
+      <% product.reviews.forEach(function(r) { %>
+        <% total += r.rating %>
+        <tr>
+          <td class="review-user"><img src="<%= r.userAvatar %>" alt="Avatar"><%= r.userName %></td>
+          <td><%= r.createdAt.toLocaleDateString() %></td>
+          <td><%= r.content %></td>
+          <td><%= r.rating %></td>
+          <td>
+            <% if (user && user._id.equals(r.user)) { %>
+              <form action="/reviews/<%= r._id %>?_method=DELETE" method="POST">
+                <button type="submit">X</button>
+              </form>
+            <% } %>
+          </td>
+        </tr>
+      <% }); %>
+      <tr>
+        <td colspan="2"></td>
+        <td><strong><%= (total / product.reviews.length).toFixed(1) %></strong></td>
+      </tr>
+    </tbody>
+  </table>
+<% } else { %>
+  <h5>No Reviews Yet</h5>
+<% } %>
+
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+
+<main class="grid">
+  <% products.forEach(function(m) { %>
+  <article>
+    <img src="<%= m.pics[0] %>" alt="Sample photo">
+    <div class="text">
+      <h3><%= m.name %></h3>
+      <p><%= m.title %></p>
+      <button><a href="/products/<%= m._id %>">DETAILS</a></button><% if (user) { %>
+          <form method="POST" action="/products/user/id=<%= user._id %>&pro=<%= m._id %>">
+            <!-- <label>Review:</label>
+            <textarea name="content"></textarea> -->
+            
+            <input type="submit" value="Add To Cart">
+          </form>
+      <% } %>
+    </div>
+  </article>
+  <% }); %>
+</main>
+  
+<%- include('../partials/footer') %>

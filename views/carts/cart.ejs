@@ -1,0 +1,48 @@
+<%- include('../partials/header') %>
+
+<div>list of your cart:</div>
+
+<div class="shopping-cart">
+  <!-- Title -->
+  <div class="title">
+    Shopping Bag
+  </div>
+  <% for(var i = 0; i < user.cart.length; i++){ %>
+
+  <!-- Product #1 -->
+  <div class="item">
+    <div class="buttons">
+      <form action="/carts/cart/id=<%= user._id %>&pro=<%= user.cart[i] %>" method="POST">
+        <button class="delete-btn" type="submit">X</button>
+      </form>
+      <!-- <span ></span> -->
+    </div>
+
+    <div class="image">
+      <img src="<%= carts.find(x=>x.id === user.cart[i]).pics[0] %>" alt="" />
+    </div>
+
+    <div class="description">
+      <span><%= carts.find(x=>x.id === user.cart[i]).name %></span>
+    </div>
+
+    <div class="quantity">
+      <button class="plus-btn" type="button" name="button">+
+      </button>
+      <input type="text" name="name" value="1">
+      <button class="minus-btn" type="button" name="button">-
+      </button>
+    </div>
+
+    <div class="total-price">$<%= carts.find(x=>x.id === user.cart[i]).price %></div>
+  </div>
+
+  <% } %>
+</div>
+
+<!-- 
+<article class="badge"><%= user.cart[i] %></article> -->
+
+
+
+<%- include('../partials/footer') %>
