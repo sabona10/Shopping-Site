@@ -31,10 +31,8 @@ function deleteFromCart(req, res, next) {
       }
     }
     product.cart= newarr;
-    // // Always save the top-level document (not subdocs)
     product.save(function (err) {
       res.redirect(`/carts/cart`);
-      // res.redirect(`/products/${product._id}`);
     });
     console.log(product);
   });

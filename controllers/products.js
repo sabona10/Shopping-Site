@@ -23,10 +23,8 @@ function addToCart(req, res) {
   id = (req.params.id).split('&');
   User.findById(id[0].split('=')[1], function (err, product) {
     product.cart.push(id[1].split('=')[1]);
-    // // Always save the top-level document (not subdocs)
     product.save(function (err) {
       res.redirect(`/products`);
-      // res.redirect(`/products/${product._id}`);
     });
     console.log(product);
   });
@@ -37,7 +35,6 @@ function show(req, res) {
   Product.findById(req.params.id)
     .populate('images')
     .exec(function(err, product) {
-      // Native MongoDB syntax
       Cart
         .find({_id: {$nin: product.images}})
         .sort('name').exec(function(err, carts) {
@@ -60,10 +57,8 @@ function removea(text) {
 function create(reqq, res) {
 
 
-  // convert checkbox of nothing or "on" to boolean
   if (req.body.pics) req.body.pics = req.body.pics.split(",");
   req.body.onSale = !!req.body.onSale;
-  // ensure empty inputs are removed so that model's default values will work
   for (let key in req.body) {
     if (req.body[key] === '') delete req.body[key];
   }
