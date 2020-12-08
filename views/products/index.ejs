@@ -1,16 +1,55 @@
 <%- include('../partials/header') %>
 
-<main class="grid">
+
+
+<body>
+  <div id="wrap">
+    <div id="columns" class="columns_4">
+        <% products.forEach(function(m) { %>
+        <figure><% if (m.pics[0] && (m.pics[0]).includes('http')) { %>
+          <img src="<%= m.pics[0] %>" alt="Sample photo">
+          <%}else{%>
+          <img src="http://<%= m.pics[0] %>" alt="Sample photo">
+          <%}%>
+
+          <figcaption><%= m.name %></figcaption>
+          <span class="price">$<%= m.price %></span>
+          <% if (user) { %>
+            <div style="display: flex;"><a style="width: 50%;" class="button" href="/products/<%= m._id %>">DETAILS</a><form style="width: 50%;" method="POST" action="/products/user/id=<%= user._id %>&pro=<%= m._id %>">
+            
+            
+              <input style="width: 100%; border: none; margin-left: 0; background: #ef4a38;"class="button" type="submit" value="Add to Cart">
+            </form></div>
+          <% } else{%>
+          <a class="button" href="/products/<%= m._id %>">DETAILS</a>
+          <% } %>
+          <!-- </div> -->
+        </figure>
+        <% }); %>
+        
+    </div>
+
+</body>
+
+
+
+
+
+
+
+<!-- <main class="grid">
   <% products.forEach(function(m) { %>
-  <article>
+  <article><% if (m.pics[0] && (m.pics[0]).includes('http')) { %>
     <img src="<%= m.pics[0] %>" alt="Sample photo">
+    <%}else{%>
+    <img src="http://<%= m.pics[0] %>" alt="Sample photo">
+    <%}%>
     <div class="text">
       <h3><%= m.name %></h3>
       <p><%= m.title %></p>
       <button><a href="/products/<%= m._id %>">DETAILS</a></button><% if (user) { %>
           <form method="POST" action="/products/user/id=<%= user._id %>&pro=<%= m._id %>">
-            <!-- <label>Review:</label>
-            <textarea name="content"></textarea> -->
+         
             
             <input type="submit" value="Add To Cart">
           </form>
@@ -18,6 +57,6 @@
     </div>
   </article>
   <% }); %>
-</main>
+</main> -->
   
 <%- include('../partials/footer') %>

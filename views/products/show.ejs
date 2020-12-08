@@ -2,7 +2,14 @@
 
 
 <div class="product">
-<div class="productimg"><img src="<%= product.pics[0] %>"></div>
+<div class="productimg">
+  <% if (product.pics[0] && (product.pics[0]).includes('http')) { %>
+  <img src="<%= product.pics[0] %>" alt="<%= product.name %>">
+  <%}else{%>
+  <img src="http://<%= product.pics[0] %>" alt="<%= product.name %>">
+  <%}%>
+  </div>
+  <!-- <img src="<%= product.pics[0] %>"></div> -->
 <div class ="productdetails">
 <section id="show-page">
   <div>Name: </div>
@@ -22,20 +29,21 @@
   </ul>
   <!-- end Images list -->
 </section>
+<% if (user) { %>
 <form id="add-review-form" method="POST" action="/products/user/id=<%= user._id %>&pro=<%= product._id %>">
   <!-- <label>Review:</label>
             <textarea name="content"></textarea> -->
 
   <input type="submit" value="Add To Cart">
 </form>
+<% }%>
 </div>
 </div>
 <br><br>
 <h2>Reviews</h2>
 <% if (user) { %>
   <form id="add-review-form" method="POST" action="/products/<%= product._id %>/reviews">
-    <label>Review:</label>
-    <textarea name="content"></textarea>
+    <textarea name="content" placeholder="Write a Review"></textarea>
     <label>Rating:</label>
     <select name="rating">
       <option value="1">1</option>
