@@ -6,7 +6,7 @@ This is a shopping site, where you can buy clothes, shoes, hats etc
 | | |
 |:-------------------------:|:-------------------------:|   
 |<img src="pics/mainpage.PNG">  |  <img src="pics/productpage.PNG">|
-<img src="pics/cartpage.PNG">|
+<img src="pics/cartpage.PNG">| <img src="pics/addproduct.PNG">|
 
 
 
