@@ -3,9 +3,10 @@ This is a shopping site, where you can buy clothes, shoes, hats etc
 
 ## Screenshot
 
-| | | |
-|:-------------------------:|:-------------------------:|:-------------------------:|
-|<img width="1604" src="pics/mainpage.PNG">  blah |  <img width="1604" src="pics/productpage.PNG">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="pics/cartpage.PNG">|
+| | |
+|:-------------------------:|:-------------------------:|   
+|<img src="pics/mainpage.PNG">  |  <img src="pics/productpage.PNG">|
+<img src="pics/cartpage.PNG">|
 
 
 
