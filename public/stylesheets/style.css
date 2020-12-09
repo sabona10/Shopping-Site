@@ -47,6 +47,7 @@ body>main h1:first-child {
 
 .product {
   display: flex;
+  max-width: 85%;
 }
 
 .productimg {
@@ -55,6 +56,7 @@ body>main h1:first-child {
 
 .productimg img {
   max-width: 100%;
+  float: right;
 }
 
 .product div {
@@ -327,10 +329,10 @@ hr {
 }
 
 button[class*=btn] {
-  width: 30px;
-  height: 30px;
+  /* width: 30px;
+  height: 30px; */
   background-color: #E1E8EE;
-  border-radius: 6px;
+  /* border-radius: 6px; */
   border: none;
   cursor: pointer;
 }
@@ -525,4 +527,8 @@ div#columns figure figcaption {
 
 #carticon {
   margin-top: 10px;
+}
+
+.productdetails {
+  width: 50%;
 }
