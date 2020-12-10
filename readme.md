@@ -26,6 +26,8 @@ $ nodemon
 
 and it will be at localhost:3000
 
+[Trello Planning](https://trello.com/b/NY9ZGmCr/project-2-clothes-store)
+
 ### Tech
 
 This site is created using:
